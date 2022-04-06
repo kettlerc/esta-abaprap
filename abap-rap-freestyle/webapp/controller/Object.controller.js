@@ -191,8 +191,8 @@ sap.ui.define([
 
         onSelectChange : function (oEvent) {
             var selectedSkill = oEvent.getParameter("selectedItem").getProperty("text");
-            var selectedSkillInstitution = oEvent.getParameter("selectedItem").getCustomData();
-            console.log(selectedSkill, selectedSkillInstitution);
+            var selectedSkillData = oEvent.getParameter("selectedItem").getCustomData();
+            console.log(selectedSkill, selectedSkillData);
             this.byId("addSkillDialog").close();
         },
     });
