@@ -1,0 +1,207 @@
+<mvc:View
+    controllerName="freestylerap.abaprapfreestyle.controller.Object"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:semantic="sap.f.semantic">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+        busy="{objectView>/busy}"
+        busyIndicatorDelay="{objectView>/delay}">
+
+        <semantic:titleHeading>
+            <layout:VerticalLayout>
+                <Title 
+                    id="bigName"
+                    visible="true"
+                    text="{Fullname}"/>
+                <Input
+                    id="bigNameEdit"
+                    visible="false"
+                    editable="{objectView>/editMode}"
+                    value="{Fullname}"
+                    valueLiveUpdate="true"
+                    liveChange="onInputChange"/>
+            </layout:VerticalLayout>
+        </semantic:titleHeading>
+
+        <semantic:headerContent>
+            <layout:HorizontalLayout id="information" visible="true">
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <Label text="Department" design="Bold"/>
+                    <Text text="{Department}"/>
+                    <Label text="Title" design="Bold"/>
+                    <Text text="{Title}"/>
+                    <Label text="Role" design="Bold"/>
+                    <Text text="{Role}"/>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <Label text="Direct Report" design="Bold"/>
+                    <Text text="{DirectReport}"/>
+                    <Label text="Start Date" design="Bold"/>
+                    <Text text="{StartDate}"/>
+                    <Label text="Email" design="Bold"/>
+                    <Text text="{Email}"/>
+                </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+            <layout:HorizontalLayout id="inputs" visible="false">
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <Label text="Department" design="Bold"/>
+                    <Input
+                        editable="{objectView>/editMode}"
+                        value="{Department}"
+                        valueLiveUpdate="true"
+                        liveChange="onInputChange"/>
+                    <Label text="Title" design="Bold"/>
+                    <Input
+                        editable="{objectView>/editMode}"
+                        value="{Title}"
+                        valueLiveUpdate="true"
+                        liveChange="onInputChange"/>
+                    <Label text="Role" design="Bold"/>
+                    <Input
+                        editable="{objectView>/editMode}"
+                        value="{Role}"
+                        valueLiveUpdate="true"
+                        liveChange="onInputChange"/>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <Label text="Direct Report" design="Bold"/>
+                    <Input
+                        editable="{objectView>/editMode}"
+                        value="{DirectReport}"
+                        valueLiveUpdate="true"
+                        liveChange="onInputChange"/>
+                    <Label text="Start Date" design="Bold"/>
+                    <DatePicker
+                        editable="{objectView>/editMode}"
+                        value="{StartDate}"
+                        valueLiveUpdate="true"
+                        liveChange="onInputChange"/>
+                    <Label text="Email" design="Bold"/>
+                    <Input
+                        editable="{objectView>/editMode}"
+                        value="{Email}"
+                        valueLiveUpdate="true"
+                        liveChange="onInputChange"/>
+                </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+        </semantic:headerContent>
+
+        <semantic:content>
+            <Table
+                id="skillTable"
+                width="auto"
+                items="{
+                    path: '/Employees2Skills',
+                    sorter: {
+                        path: 'Id',
+                        descending: false
+                    }
+                }"
+                mode="MultiSelect"
+                growing="true"
+                growingScrollToLoad="true">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            id="tableHeader"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer />
+                        <Button
+                            icon="sap-icon://add"
+                            type="Transparent"
+                            press="onCreateSkill"/>
+                        <Button
+                            icon="sap-icon://delete"
+                            type="Transparent"
+                            press="onDeleteSkill"/>
+                        <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="skillColumn">
+                        <Text text="{i18n>skillColumnTitle}" id="skillColumnTitle"/>
+                    </Column>
+                    <Column id="institutionColumn">
+                        <Text text="{i18n>skillInstitutionTitle}" id="skillInstitutionTitle"/>
+                    </Column>
+                    <Column id="skillTypeColumn">
+                        <Text text="{i18n>skillTypeTitle}" id="skillTypeTitle"/>
+                    </Column>
+                    <Column id="skillDateColumn">
+                        <Text text="{i18n>skillDateTitle}" id="skillDateTitle"/>
+                    </Column>
+                    <Column id="skillRenewalColumn">
+                        <Text text="{i18n>skillRenewalTitle}" id="skillRenewalTitle"/>
+                    </Column>
+                    <Column id="skillComfortColumn">
+                        <Text text="{i18n>skillComfortTitle}" id="skillComfortTitle"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text 
+                                text="{/Skills>Title}"/>
+                            <Text
+                                text="{Institution}"/>
+                            <Text
+                                text="{SkillType}"/>
+                            <DatePicker
+                                editable="{objectView>/editMode}"
+                                value="{Dateacquired}"
+                                valueLiveUpdate="true"
+                                liveChange="onInputChange"/>
+                            <Input
+                                editable="{objectView>/editMode}"
+                                value="{Renewal}"
+                                valueLiveUpdate="true"
+                                liveChange="onInputChange"/>
+                            <Input
+                                editable="{objectView>/editMode}"
+                                value="{Comfortlevel}"
+                                valueLiveUpdate="true"
+                                liveChange="onInputChange"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+
+        <semantic:titleMainAction>
+			<semantic:TitleMainAction id="editAction" text="Edit" press="onEditEmployee"/>
+		</semantic:titleMainAction>
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+        </semantic:sendEmailAction>
+
+        <semantic:footerMainAction>
+			<semantic:FooterMainAction text="Save" press="onSave"/>
+		</semantic:footerMainAction>
+
+		<semantic:footerCustomActions>
+			<Button id="cancelAction" text="Cancel" press="onResetChanges"/>
+		</semantic:footerCustomActions>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
