@@ -30,6 +30,8 @@ sap.ui.define([
                 });
             this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "objectView");
+            this.oSemanticPage = this.byId("page");
+            this.oEditAction = this.byId("editAction");
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -113,6 +115,10 @@ sap.ui.define([
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
         },
 
+        showFooter : function (bShow) {
+			this.oSemanticPage.setShowFooter(bShow);
+		},
+
         onEditEmployee : function () {
             var oViewModel = this.getModel("objectView")
                 oViewModel.setProperty("/editMode", true);
@@ -128,16 +134,11 @@ sap.ui.define([
             this.showFooter(false);
             this.oEditAction.setVisible(true);
 			var fnSuccess = function () {
-				this._setBusy(false);
-				this._setUIChanges(false);
 			}.bind(this);
 
 			var fnError = function (oError) {
-				this._setBusy(false);
-				this._setUIChanges(false);
 			}.bind(this);
 
-			this._setBusy(true); // Lock UI until submitBatch is resolved.
 			this.getView().getModel().submitBatch("employeeInfo").then(fnSuccess, fnError);
 			this._bTechnicalErrors = false;
 
@@ -162,6 +163,18 @@ sap.ui.define([
             this.showFooter(false);
             this.oEditAction.setVisible(true);
             this.getView().getModel().resetChanges("employeeInfo");
+        },
+
+        onDeleteSkill : function () {
+            var oSelected = this.byId("skillTable").getSelectedItem();
+
+			if (oSelected) {
+				oSelected.getBindingContext().delete("$auto").then(function () {
+					MessageToast.show("Skill deleted!");
+				}.bind(this), function (oError) {
+					MessageBox.error(oError.message);
+				});
+			}
         }
     });
 

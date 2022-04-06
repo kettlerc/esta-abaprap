@@ -66,6 +66,15 @@
                     <Column id="titleColumn">
                         <Text text="{i18n>titleColumnTitle}" id="titleColumnTitle"/>
                     </Column>
+                    <Column id="roleColumn">
+                        <Text text="{i18n>roleColumnTitle}" id="roleColumnTitle"/>
+                    </Column>
+                    <Column id="industryColumn">
+                        <Text text="{i18n>industryColumnTitle}" id="industryColumnTitle"/>
+                    </Column>
+                    <Column id="directReportColumn">
+                        <Text text="{i18n>directReportColumnTitle}" id="directReportColumnTitle"/>
+                    </Column>
                 </columns>
 
                 <items>
@@ -79,6 +88,12 @@
                                 text="{Department}"/>
                             <ObjectIdentifier
                                 text="{Title}"/>
+                            <ObjectIdentifier
+                                text="{Role}"/>
+                            <ObjectIdentifier
+                                text="{Industry}"/>
+                            <ObjectIdentifier
+                                text="{DirectReport}"/>
                             <ObjectNumber />
                         </cells>
                     </ColumnListItem>

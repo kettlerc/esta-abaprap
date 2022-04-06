@@ -97,7 +97,7 @@
                 id="skillTable"
                 width="auto"
                 items="{
-                    path: '/Employees2Skills',
+                    path: 'Employees2Skills',
                     sorter: {
                         path: 'Id',
                         descending: false
@@ -160,11 +160,11 @@
                     <ColumnListItem>
                         <cells>
                             <Text 
-                                text="{/Skills>Title}"/>
+                                text="{_Skills/Skill}"/>
                             <Text
-                                text="{Institution}"/>
+                                text="{_Skills/Institution}"/>
                             <Text
-                                text="{SkillType}"/>
+                                text="{_Skills/Type}"/>
                             <DatePicker
                                 editable="{objectView>/editMode}"
                                 value="{Dateacquired}"

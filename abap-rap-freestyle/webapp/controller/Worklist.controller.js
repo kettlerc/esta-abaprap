@@ -115,7 +115,7 @@ sap.ui.define([
         },
 
         onAddEmployee: function(oEvent) {
-            console.log("New employee added");         
+            console.log("New employee added!!!");          
 		},
 
         /* =========================================================== */
