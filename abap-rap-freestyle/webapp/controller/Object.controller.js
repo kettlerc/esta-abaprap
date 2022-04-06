@@ -187,7 +187,14 @@ sap.ui.define([
 
         addSkill : function () {
             console.log("Skill added");
-        }
+        },
+
+        onSelectChange : function (oEvent) {
+            var selectedSkill = oEvent.getParameter("selectedItem").getProperty("text");
+            var selectedSkillInstitution = oEvent.getParameter("selectedItem").getCustomData();
+            console.log(selectedSkill, selectedSkillInstitution);
+            this.byId("addSkillDialog").close();
+        },
     });
 
 });

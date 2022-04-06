@@ -15,8 +15,22 @@
                 items="{
                     path: '/Skills'
                     }"
-                editable="{objectView>/editMode}">
-                <core:Item key="{Id}" text="{Skill}"/>
+                change="onSelectChange">
+                <core:Item 
+                    key="{Id}" 
+                    text="{Skill}">
+                    <core:customData>
+                        <core:CustomData 
+                        key="Id"
+                        value="{Id}"/>
+                        <core:CustomData 
+                        key="Institution"
+                        value="{Institution}"/>
+                        <core:CustomData 
+                        key="Type"
+                        value="{Type}"/>
+                    </core:customData>
+                </core:Item>
             </Select>
         </layout:VerticalLayout>
       </layout:HorizontalLayout>
