@@ -175,6 +175,18 @@ sap.ui.define([
 					MessageBox.error(oError.message);
 				});
 			}
+        },
+
+        onAddSkillDialog : function () {
+            this.byId("addSkillDialog").open();
+        },
+
+        onCloseAddSkillDialog : function () {
+			this.byId("addSkillDialog").close();
+		},
+
+        addSkill : function () {
+            console.log("Skill added");
         }
     });
 

@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="freestylerap.abaprapfreestyle.controller.Object"
     xmlns="sap.m"
+    xmlns:f="sap.f"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns:layout="sap.ui.layout"
@@ -117,7 +118,7 @@
                         <Button
                             icon="sap-icon://add"
                             type="Transparent"
-                            press="onCreateSkill"/>
+                            press="onAddSkillDialog"/>
                         <Button
                             icon="sap-icon://delete"
                             type="Transparent"
@@ -201,6 +202,10 @@
 		<semantic:footerCustomActions>
 			<Button id="cancelAction" text="Cancel" press="onResetChanges"/>
 		</semantic:footerCustomActions>
+
+        <semantic:dependents>
+			<core:Fragment fragmentName="freestylerap.abaprapfreestyle.view.AddSkillDialog" type="XML" />
+		</semantic:dependents>
 
     </semantic:SemanticPage>
 

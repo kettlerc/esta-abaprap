@@ -125,8 +125,16 @@ sap.ui.define([
                         objectId: oContext.getPath().substring("/Employees".length)
                     });
                     }, function (oError) {
-                    });          
-		},
+                });
+            
+            oList.getItems().some(function (oItem) {
+                if (oItem.getBindingContext() === oContext) {
+                    oItem.focus();
+                    oItem.setSelected(true);
+                    return true;
+                }
+            });
+        },
 
         /* =========================================================== */
         /* internal methods                                            */
