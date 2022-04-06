@@ -17,7 +17,7 @@
 
         <semantic:content>
             <Table
-                id="table"
+                id="employeeTable"
                 width="auto"
                 items="{
                     path: '/Employees',
@@ -69,9 +69,6 @@
                     <Column id="roleColumn">
                         <Text text="{i18n>roleColumnTitle}" id="roleColumnTitle"/>
                     </Column>
-                    <Column id="industryColumn">
-                        <Text text="{i18n>industryColumnTitle}" id="industryColumnTitle"/>
-                    </Column>
                     <Column id="directReportColumn">
                         <Text text="{i18n>directReportColumnTitle}" id="directReportColumnTitle"/>
                     </Column>
@@ -90,8 +87,6 @@
                                 text="{Title}"/>
                             <ObjectIdentifier
                                 text="{Role}"/>
-                            <ObjectIdentifier
-                                text="{Industry}"/>
                             <ObjectIdentifier
                                 text="{DirectReport}"/>
                             <ObjectNumber />

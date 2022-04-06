@@ -115,7 +115,17 @@ sap.ui.define([
         },
 
         onAddEmployee: function(oEvent) {
-            console.log("New employee added!!!");          
+            console.log("New employee added!!!");
+            var oList = this.byId("employeeTable")
+			var	oBinding = oList.getBinding("items")
+            var oRouter = this.getRouter();
+			var	oContext = oBinding.create({});
+                oContext.created().then(function (oEvent) {
+                    oRouter.navTo("object", {
+                        objectId: oContext.getPath().substring("/Employees".length)
+                    });
+                    }, function (oError) {
+                    });          
 		},
 
         /* =========================================================== */
