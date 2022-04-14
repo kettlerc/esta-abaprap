@@ -1,29 +1,32 @@
 <mvc:View
-    controllerName="freestylerap.abaprapfreestyle.controller.Worklist"
+    controllerName="freestylerap.abaprapfreestyle.controller.Skills"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:semantic="sap.f.semantic">
 
     <semantic:SemanticPage
-        id="page"
+        id="skillsPage"
         headerPinnable="false"
-        toggleHeaderOnTitleClick="false">
+        toggleHeaderOnTitleClick="false"
+        showNavButton="true" 
+        showFooter = "{skillView>/editMode}"
+        navButtonPress=".onNavBack" 
+        icon="sap-icon://add-favorite">
 
         <semantic:titleHeading>
             <Title
-                text="{i18n>worklistTitle}"
+                text="Master Skill List"
                 level="H2"/>
         </semantic:titleHeading>
 
         <semantic:content>
             <Table
-                id="employeeTable"
+                id="skillsTable"
                 width="auto"
                 items="{
-                    path: '/Employees',
-                    sorter: {
-                        path: 'Id',
-                        descending: false
+                    path: '/Skills',
+                    parameters: {
+                        $$updateGroupId : 'SkillGroup'
                     }
                 }"
                 noDataText="{worklistView>/tableNoDataText}"
@@ -36,7 +39,7 @@
                     <OverflowToolbar>
                         <Title
                             id="tableHeader"
-                            text="{worklistView>/worklistTableTitle}"
+                            text="{Master Skills List}"
                             level="H3"/>
                         <ToolbarSpacer />
                         <Button
@@ -57,38 +60,26 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column id="nameColumn">
-                        <Text text="{i18n>nameColumnTitle}" id="nameColumnTitle"/>
+                    <Column id="skillColumn">
+                        <Text text="Skill" id="skillColumnTitle"/>
                     </Column>
-                    <Column id="departmentColumn">
-                        <Text text="{i18n>departmentColumnTitle}" id="departmentColumnTitle"/>
+                    <Column id="skillTypeColumn">
+                        <Text text="Type" id="skillTypeColumnTitle"/>
                     </Column>
-                    <Column id="titleColumn">
-                        <Text text="{i18n>titleColumnTitle}" id="titleColumnTitle"/>
-                    </Column>
-                    <Column id="roleColumn">
-                        <Text text="{i18n>roleColumnTitle}" id="roleColumnTitle"/>
-                    </Column>
-                    <Column id="directReportColumn">
-                        <Text text="{i18n>directReportColumnTitle}" id="directReportColumnTitle"/>
+                    <Column id="institutionColumn">
+                        <Text text="Institution" id="institutionColumnTitle"/>
                     </Column>
                 </columns>
 
                 <items>
-                    <ColumnListItem
-                        type="Navigation"
-                        press=".onPress">
+                    <ColumnListItem>
                         <cells>
                             <ObjectIdentifier
-                                title="{Fullname}"/>
+                                title="{Skill}"/>
                             <ObjectIdentifier
-                                text="{Department}"/>
+                                text="{Type}"/>
                             <ObjectIdentifier
-                                text="{Title}"/>
-                            <ObjectIdentifier
-                                text="{Role}"/>
-                            <ObjectIdentifier
-                                text="{DirectReport}"/>
+                                text="{Institution}"/>
                             <ObjectNumber />
                         </cells>
                     </ColumnListItem>
@@ -100,13 +91,21 @@
             <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
         </semantic:sendEmailAction>
 
-        <semantic:titleCustomTextActions>
-			<Button text="Master Skill List" press="onMasterSkillList"/>
-		</semantic:titleCustomTextActions>
-        
-        <semantic:titleMainAction>
-			<semantic:TitleMainAction text="Add Employee" press="onAddEmployee"/>
-		</semantic:titleMainAction>
+        <semantic:addAction>
+			<semantic:AddAction press="onAddSkill"/>
+		</semantic:addAction>
+
+        <semantic:editAction>
+			<semantic:EditAction press="onEditSkill"/>
+		</semantic:editAction>
+
+        <semantic:footerMainAction>
+			<semantic:FooterMainAction text="Save" press="onSave"/>
+		</semantic:footerMainAction>
+
+		<semantic:footerCustomActions>
+			<Button id="cancelAction" text="Cancel" press="onResetChanges"/>
+		</semantic:footerCustomActions>
 
     </semantic:SemanticPage>
 

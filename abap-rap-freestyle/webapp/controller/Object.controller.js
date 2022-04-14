@@ -8,6 +8,8 @@ sap.ui.define([
 ], function (BaseController, MessageToast, MessageBox, JSONModel, History, formatter) {
     "use strict";
 
+    var selectedSkill = "";
+
     return BaseController.extend("freestylerap.abaprapfreestyle.controller.Object", {
 
         formatter: formatter,
@@ -32,6 +34,7 @@ sap.ui.define([
             this.setModel(oViewModel, "objectView");
             this.oSemanticPage = this.byId("page");
             this.oEditAction = this.byId("editAction");
+            this.selectedSkill = "";
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -186,15 +189,29 @@ sap.ui.define([
 		},
 
         addSkill : function () {
-            console.log("Skill added");
+			var List = this.byId("skillTable"),
+				Binding = List.getBinding("items"),
+				Context = Binding.create({
+
+                        "SkillId": selectedSkill
+				});
+
+					List.getItems().some(function (Item) {
+				if (Item.getBindingContext() === Context) {
+					Item.focus();
+					Item.setSelected(true);
+					return true;
+				}
+			});	
+			this.getView().getModel().submitBatch("skillGroup");
+
+			this.byId("addSkillDialog").close();
         },
 
         onSelectChange : function (oEvent) {
-            var selectedSkill = oEvent.getParameter("selectedItem").getProperty("text");
-            var selectedSkillInstitution = oEvent.getParameter("selectedItem").getCustomData();
-            console.log(selectedSkill, selectedSkillInstitution);
-            this.byId("addSkillDialog").close();
-        },
+            selectedSkill = oEvent.getParameter("selectedItem").getProperty("key");
+            console.log(selectedSkill);
+        }
     });
 
 });

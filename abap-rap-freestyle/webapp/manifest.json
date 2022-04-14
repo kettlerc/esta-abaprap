@@ -101,19 +101,29 @@
           "target": [
             "object"
           ]
+        },
+        {
+          "pattern": "Skills",
+          "name": "skills",
+          "target": [
+            "skills"
+          ]
         }
       ],
       "targets": {
         "worklist": {
           "viewName": "Worklist",
           "viewId": "worklist",
-          "viewLevel": 1,
           "title": "{i18n>worklistViewTitle}"
+        },
+        "skills": {
+          "viewName": "Skills",
+          "viewId": "skills",
+          "title": "{i18n>skillListViewTitle}"
         },
         "object": {
           "viewName": "Object",
           "viewId": "object",
-          "viewLevel": 2,
           "title": "{i18n>objectViewTitle}"
         },
         "objectNotFound": {

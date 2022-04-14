@@ -110,7 +110,7 @@ sap.ui.define([
          * @public
          */
         onRefresh : function () {
-            var oTable = this.byId("table");
+            var oTable = this.byId("employeeTable");
             oTable.getBinding("items").refresh();
         },
 
@@ -164,6 +164,10 @@ sap.ui.define([
             if (aTableSearchState.length !== 0) {
                 oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
             }
+        },
+
+        onMasterSkillList : function () {
+            this.getRouter().navTo("skills");
         }
 
     });
