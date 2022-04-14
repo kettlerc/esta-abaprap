@@ -11,37 +11,22 @@ sap.ui.define([
 
         formatter: formatter,
 
-        /* =========================================================== */
-        /* lifecycle methods                                           */
-        /* =========================================================== */
-
-        /**
-         * Called when the worklist controller is instantiated.
-         * @public
-         */
         onInit : function () {
-            var oViewModel;
-
+            var oViewModel = new JSONModel({
+                    editMode: false
+                });
+			this.getView().setModel(oViewModel, "skillView");
+			this.oEditAction = this.byId("editAction");
+            this.oSemanticPage = this.byId("skillsPage");
             // keeps the search state
             this._aTableSearchState = [];
 
         },
 
-        /* =========================================================== */
-        /* event handlers                                              */
-        /* =========================================================== */
-
-
-        /**
-         * Event handler for navigating back.
-         * Navigate back in the browser history
-         * @public
-         */
         onNavBack : function() {
             // eslint-disable-next-line sap-no-history-manipulation
             history.go(-1);
         },
-
 
         onSearch : function (oEvent) {
             if (oEvent.getParameters().refreshButtonPressed) {
@@ -62,17 +47,98 @@ sap.ui.define([
 
         },
 
+        _applySearch: function(aTableSearchState) {
+            var oTable = this.byId("skillsTable"),
+                oViewModel = this.getModel("skillView");
+            oTable.getBinding("items").filter(aTableSearchState, "Application");
+            // changes the noDataText of the list in case there are no filter results
+            if (aTableSearchState.length !== 0) {
+                oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
+            }
+        },
+
+        showFooter : function (bShow) {
+			this.oSemanticPage.setShowFooter(bShow);
+		},
+
         onRefresh : function () {
             var oTable = this.byId("skillsTable");
             oTable.getBinding("items").refresh();
         },
 
         onAddSkill : function () {
-            console.log("Adding Skill");
+            var oViewModel = this.getView().getModel("skillView");
+			oViewModel.setProperty("/editMode", true);
+            this.getView().getModel().submitBatch("SkillGroup");
+            var oList = this.byId("skillsTable");
+            var oBinding = oList.getBinding("items");
+            var oContext = oBinding.create({
+                "Skill": "",
+                "Type": "",
+                "Institution": ""
+            });
+
+            oList.getItems().some(function (oItem) {
+                if (oItem.getBindingContext() === oContext) {
+                    oItem.focus();
+                    oItem.setSelected(true);
+                    return true;
+                }
+            });
         },
 
         onEditSkill : function () {
-            console.log("Editing Skill");
+            var oViewModel = this.getView().getModel("skillView");
+			oViewModel.setProperty("/editMode", true);
+
+            this.byId("skill").setProperty("visible", false);
+            this.byId("skillEdit").setProperty("visible", true);
+            this.byId("type").setProperty("visible", false);
+            this.byId("typeEdit").setProperty("visible", true);
+            this.byId("institution").setProperty("visible", false);
+            this.byId("institutionEdit").setProperty("visible", true);
+        },
+
+        onSave : function () {
+            this.showFooter(false);
+            this.oEditAction.setVisible(true);
+			var fnSuccess = function () {
+			}.bind(this);
+
+			var fnError = function (oError) {
+			}.bind(this);
+
+            this.byId("skill").setProperty("visible", true);
+            this.byId("skillEdit").setProperty("visible", false);
+            this.byId("type").setProperty("visible", true);
+            this.byId("typeEdit").setProperty("visible", false);
+            this.byId("institution").setProperty("visible", true);
+            this.byId("institutionEdit").setProperty("visible", false);
+        },
+
+        onResetChanges : function () {
+            var oViewModel = this.getModel("skillView")
+            oViewModel.setProperty("/editMode", false);
+            this.getView().getModel().resetChanges("SkillGroup");
+
+            this.byId("skill").setProperty("visible", true);
+            this.byId("skillEdit").setProperty("visible", false);
+            this.byId("type").setProperty("visible", true);
+            this.byId("typeEdit").setProperty("visible", false);
+            this.byId("institution").setProperty("visible", true);
+            this.byId("institutionEdit").setProperty("visible", false);
+        },
+
+        onDeleteMasterSkill : function () {
+            var oSelected = this.byId("skillsTable").getSelectedItem();
+
+			if (oSelected) {
+				oSelected.getBindingContext().delete("$auto").then(function () {
+					MessageToast.show("Skill deleted!");
+				}.bind(this), function (oError) {
+					MessageBox.error(oError.message);
+				});
+			}
         }
     });
 });

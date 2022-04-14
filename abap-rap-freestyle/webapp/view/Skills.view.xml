@@ -7,11 +7,8 @@
     <semantic:SemanticPage
         id="skillsPage"
         headerPinnable="false"
-        toggleHeaderOnTitleClick="false"
-        showNavButton="true" 
-        showFooter = "{skillView>/editMode}"
-        navButtonPress=".onNavBack" 
-        icon="sap-icon://add-favorite">
+        toggleHeaderOnTitleClick="false" 
+        showFooter = "{skillView>/editMode}">
 
         <semantic:titleHeading>
             <Title
@@ -33,7 +30,8 @@
                 busyIndicatorDelay="{worklistView>/tableBusyDelay}"
                 growing="true"
                 growingScrollToLoad="true"
-                updateFinished=".onUpdateFinished">
+                updateFinished=".onUpdateFinished"
+                mode="SingleSelectLeft">
 
                 <headerToolbar>
                     <OverflowToolbar>
@@ -75,11 +73,32 @@
                     <ColumnListItem>
                         <cells>
                             <ObjectIdentifier
-                                title="{Skill}"/>
+                                id="skill"
+                                title="{Skill}"
+                                visible ="true"/>
+                            <Input 
+                                id="skillEdit"
+                                value="{Skill}"
+                                visible="false"
+                                editable="{skillView>/editMode}"/>
                             <ObjectIdentifier
-                                text="{Type}"/>
+                                id="type"
+                                text="{Type}"
+                                visible ="true"/>
+                            <Input 
+                                id="typeEdit"
+                                value="{Type}"
+                                visible="false"
+                                editable="{skillView>/editMode}"/>
                             <ObjectIdentifier
-                                text="{Institution}"/>
+                                id="institution"
+                                text="{Institution}"
+                                visible ="true"/>
+                            <Input 
+                                id="institutionEdit"
+                                value="{Institution}"
+                                visible="false"
+                                editable="{skillView>/editMode}"/>
                             <ObjectNumber />
                         </cells>
                     </ColumnListItem>
@@ -96,8 +115,12 @@
 		</semantic:addAction>
 
         <semantic:editAction>
-			<semantic:EditAction press="onEditSkill"/>
+			<semantic:EditAction id="editAction" press="onEditSkill"/>
 		</semantic:editAction>
+
+        <semantic:deleteAction>
+			<semantic:DeleteAction press="onDeleteMasterSkill"/>
+		</semantic:deleteAction>
 
         <semantic:footerMainAction>
 			<semantic:FooterMainAction text="Save" press="onSave"/>

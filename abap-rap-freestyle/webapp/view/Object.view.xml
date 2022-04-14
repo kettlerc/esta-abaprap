@@ -24,9 +24,7 @@
                     id="bigNameEdit"
                     visible="false"
                     editable="{objectView>/editMode}"
-                    value="{Fullname}"
-                    valueLiveUpdate="true"
-                    liveChange="onInputChange"/>
+                    value="{Fullname}"/>
             </layout:VerticalLayout>
         </semantic:titleHeading>
 
@@ -54,41 +52,29 @@
                     <Label text="Department" design="Bold"/>
                     <Input
                         editable="{objectView>/editMode}"
-                        value="{Department}"
-                        valueLiveUpdate="true"
-                        liveChange="onInputChange"/>
+                        value="{Department}"/>
                     <Label text="Title" design="Bold"/>
                     <Input
                         editable="{objectView>/editMode}"
-                        value="{Title}"
-                        valueLiveUpdate="true"
-                        liveChange="onInputChange"/>
+                        value="{Title}"/>
                     <Label text="Role" design="Bold"/>
                     <Input
                         editable="{objectView>/editMode}"
-                        value="{Role}"
-                        valueLiveUpdate="true"
-                        liveChange="onInputChange"/>
+                        value="{Role}"/>
                 </layout:VerticalLayout>
                 <layout:VerticalLayout class="sapUiMediumMarginEnd">
                     <Label text="Direct Report" design="Bold"/>
                     <Input
                         editable="{objectView>/editMode}"
-                        value="{DirectReport}"
-                        valueLiveUpdate="true"
-                        liveChange="onInputChange"/>
+                        value="{DirectReport}"/>
                     <Label text="Start Date" design="Bold"/>
                     <DatePicker
                         editable="{objectView>/editMode}"
-                        value="{StartDate}"
-                        valueLiveUpdate="true"
-                        liveChange="onInputChange"/>
+                        value="{StartDate}"/>
                     <Label text="Email" design="Bold"/>
                     <Input
                         editable="{objectView>/editMode}"
-                        value="{Email}"
-                        valueLiveUpdate="true"
-                        liveChange="onInputChange"/>
+                        value="{Email}"/>
                 </layout:VerticalLayout>
             </layout:HorizontalLayout>
         </semantic:headerContent>
@@ -168,19 +154,13 @@
                                 text="{_Skills/Type}"/>
                             <DatePicker
                                 editable="{objectView>/editMode}"
-                                value="{Dateacquired}"
-                                valueLiveUpdate="true"
-                                liveChange="onInputChange"/>
+                                value="{Dateacquired}"/>
                             <Input
                                 editable="{objectView>/editMode}"
-                                value="{Renewal}"
-                                valueLiveUpdate="true"
-                                liveChange="onInputChange"/>
+                                value="{Renewal}"/>
                             <Input
                                 editable="{objectView>/editMode}"
-                                value="{Comfortlevel}"
-                                valueLiveUpdate="true"
-                                liveChange="onInputChange"/>
+                                value="{Comfortlevel}"/>
                         </cells>
                     </ColumnListItem>
                 </items>
