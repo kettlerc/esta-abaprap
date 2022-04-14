@@ -9,9 +9,6 @@
         <layout:VerticalLayout class="sapUiContentPadding">
             <Text text="Please select the skill you would like to add:"/>
             <Select
-                selectedKey="{
-                    path: '/Skills'
-                }"
                 items="{
                     path: '/Skills'
                     }"

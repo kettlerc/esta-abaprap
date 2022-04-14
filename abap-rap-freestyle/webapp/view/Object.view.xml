@@ -12,7 +12,9 @@
         headerPinnable="false"
         toggleHeaderOnTitleClick="false"
         busy="{objectView>/busy}"
-        busyIndicatorDelay="{objectView>/delay}">
+        busyIndicatorDelay="{objectView>/delay}"
+        showNavButton="true"
+		navButtonPress="onNavBack">
 
         <semantic:titleHeading>
             <layout:VerticalLayout>
@@ -102,10 +104,12 @@
                             level="H3"/>
                         <ToolbarSpacer />
                         <Button
+                            visible="{objectView>/editMode}"
                             icon="sap-icon://add"
                             type="Transparent"
                             press="onAddSkillDialog"/>
                         <Button
+                            visible="{objectView>/editMode}"
                             icon="sap-icon://delete"
                             type="Transparent"
                             press="onDeleteSkill"/>
@@ -170,10 +174,6 @@
         <semantic:titleMainAction>
 			<semantic:TitleMainAction id="editAction" text="Edit" press="onEditEmployee"/>
 		</semantic:titleMainAction>
-
-        <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-        </semantic:sendEmailAction>
 
         <semantic:footerMainAction>
 			<semantic:FooterMainAction text="Save" press="onSave"/>

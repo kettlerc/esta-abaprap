@@ -2,9 +2,10 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "../model/formatter",
+    "sap/m/MessageToast",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+], function (BaseController, JSONModel, formatter, MessageToast, Filter, FilterOperator) {
     "use strict";
 
     return BaseController.extend("freestylerap.abaprapfreestyle.controller.Skills", {
@@ -90,13 +91,6 @@ sap.ui.define([
         onEditSkill : function () {
             var oViewModel = this.getView().getModel("skillView");
 			oViewModel.setProperty("/editMode", true);
-
-            this.byId("skill").setProperty("visible", false);
-            this.byId("skillEdit").setProperty("visible", true);
-            this.byId("type").setProperty("visible", false);
-            this.byId("typeEdit").setProperty("visible", true);
-            this.byId("institution").setProperty("visible", false);
-            this.byId("institutionEdit").setProperty("visible", true);
         },
 
         onSave : function () {
@@ -108,25 +102,19 @@ sap.ui.define([
 			var fnError = function (oError) {
 			}.bind(this);
 
-            this.byId("skill").setProperty("visible", true);
-            this.byId("skillEdit").setProperty("visible", false);
-            this.byId("type").setProperty("visible", true);
-            this.byId("typeEdit").setProperty("visible", false);
-            this.byId("institution").setProperty("visible", true);
-            this.byId("institutionEdit").setProperty("visible", false);
+            this.getView().getModel().submitBatch("SkillGroup").then(fnSuccess, fnError);
+			this._bTechnicalErrors = false;
+
+            var oViewModel = this.getModel("skillView")
+            oViewModel.setProperty("/editMode", false);
+
+            MessageToast.show("Changes saved!");
         },
 
         onResetChanges : function () {
             var oViewModel = this.getModel("skillView")
             oViewModel.setProperty("/editMode", false);
             this.getView().getModel().resetChanges("SkillGroup");
-
-            this.byId("skill").setProperty("visible", true);
-            this.byId("skillEdit").setProperty("visible", false);
-            this.byId("type").setProperty("visible", true);
-            this.byId("typeEdit").setProperty("visible", false);
-            this.byId("institution").setProperty("visible", true);
-            this.byId("institutionEdit").setProperty("visible", false);
         },
 
         onDeleteMasterSkill : function () {

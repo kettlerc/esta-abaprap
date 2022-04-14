@@ -8,7 +8,9 @@
         id="skillsPage"
         headerPinnable="false"
         toggleHeaderOnTitleClick="false" 
-        showFooter = "{skillView>/editMode}">
+        showFooter="{skillView>/editMode}"
+        showNavButton="true"
+		navButtonPress="onNavBack">
 
         <semantic:titleHeading>
             <Title
@@ -31,7 +33,8 @@
                 growing="true"
                 growingScrollToLoad="true"
                 updateFinished=".onUpdateFinished"
-                mode="SingleSelectLeft">
+                mode="SingleSelectLeft"
+                alternateRowColors = "true">
 
                 <headerToolbar>
                     <OverflowToolbar>
@@ -72,43 +75,45 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <ObjectIdentifier
-                                id="skill"
-                                title="{Skill}"
-                                visible ="true"/>
-                            <Input 
-                                id="skillEdit"
-                                value="{Skill}"
-                                visible="false"
-                                editable="{skillView>/editMode}"/>
-                            <ObjectIdentifier
-                                id="type"
-                                text="{Type}"
-                                visible ="true"/>
-                            <Input 
-                                id="typeEdit"
-                                value="{Type}"
-                                visible="false"
-                                editable="{skillView>/editMode}"/>
-                            <ObjectIdentifier
-                                id="institution"
-                                text="{Institution}"
-                                visible ="true"/>
-                            <Input 
-                                id="institutionEdit"
-                                value="{Institution}"
-                                visible="false"
-                                editable="{skillView>/editMode}"/>
+                            <VBox>
+                                <ObjectIdentifier
+                                    id="skill"
+                                    title="{Skill}"
+                                    visible ="{=!${skillView>/editMode}}"/>
+                                <Input 
+                                    id="skillEdit"
+                                    value="{Skill}"
+                                    visible="{skillView>/editMode}"
+                                    editable="true"/>
+                            </VBox>
+                            <VBox>
+                                <ObjectIdentifier
+                                    id="type"
+                                    text="{Type}"
+                                    visible ="{=!${skillView>/editMode}}"/>
+                                <Input 
+                                    id="typeEdit"
+                                    value="{Type}"
+                                    visible="{skillView>/editMode}"
+                                    editable="true"/>
+                            </VBox>
+                            <VBox>
+                                <ObjectIdentifier
+                                    id="institution"
+                                    text="{Institution}"
+                                    visible ="{=!${skillView>/editMode}}"/>
+                                <Input 
+                                    id="institutionEdit"
+                                    value="{Institution}"
+                                    visible="{skillView>/editMode}"
+                                    editable="true"/>
+                            </VBox>
                             <ObjectNumber />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
         </semantic:content>
-
-        <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-        </semantic:sendEmailAction>
 
         <semantic:addAction>
 			<semantic:AddAction press="onAddSkill"/>

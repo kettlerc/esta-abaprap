@@ -17,6 +17,7 @@ sap.ui.define([
         
         onInit : function () {
             var oViewModel = new JSONModel({
+                    editMode: false,
                     busy : true,
                     delay : 0
                 });
@@ -69,17 +70,6 @@ sap.ui.define([
                 this.getRouter().getTargets().display("objectNotFound");
                 return;
             }
-
-            var oResourceBundle = this.getResourceBundle(),
-                oObject = oView.getBindingContext().getObject(),
-                sObjectId = oObject.Id,
-                sObjectName = oObject.Employees;
-
-                oViewModel.setProperty("/busy", false);
-                oViewModel.setProperty("/shareSendEmailSubject",
-                    oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
-                oViewModel.setProperty("/shareSendEmailMessage",
-                    oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
         },
 
         showFooter : function (bShow) {
