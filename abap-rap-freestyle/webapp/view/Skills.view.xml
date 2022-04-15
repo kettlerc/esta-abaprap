@@ -7,15 +7,14 @@
 
     <semantic:SemanticPage
         id="skillsPage"
-        headerPinnable="false"
-        toggleHeaderOnTitleClick="false" 
-        showFooter="{skillView>/editMode}"
-        showNavButton="true"
-		navButtonPress="onNavBack">
+        headerPinnable="true"
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false" 
+        showFooter="{skillView>/editMode}">
 
         <semantic:titleHeading>
             <Title
-                text="Master Skill List"
+                text="{i18n>skillListViewTitle}"
                 level="H2"/>
         </semantic:titleHeading>
 
@@ -30,7 +29,8 @@
                         groupTitle="Group1" 
                         name="Skill" 
                         label="Skill" 
-                        labelTooltip="Search by skill">
+                        labelTooltip="Search by skill"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -40,7 +40,8 @@
                         groupTitle="Group1" 
                         name="Type" 
                         label="Type" 
-                        labelTooltip="Search by type">
+                        labelTooltip="Search by type"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -50,7 +51,8 @@
                         groupTitle="Group1" 
                         name="Institution" 
                         label="Institution" 
-                        labelTooltip="Search by institution">
+                        labelTooltip="Search by institution"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -92,16 +94,6 @@
                             id="exportEmployeeListButton"
                             icon="sap-icon://excel-attachment"
                             press="onExport"/>
-                        <SearchField
-                            id="searchField"
-                            tooltip="{i18n>worklistSearchTooltip}"
-                            liveChange=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData
-                                    maxWidth="200px"
-                                    priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
                     </OverflowToolbar>
                 </headerToolbar>
 

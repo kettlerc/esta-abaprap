@@ -35,34 +35,26 @@
             <layout:HorizontalLayout id="information" visible="true">
                 <Avatar 
                     displaySize="XL"
-                    class="sapUiMediumMarginEnd"/>
-                <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
-                        <Label text="Department" design="Bold" class="sapUiSmallMarginEnd"/>
-                        <Text text="{Department}"/>
-                    </layout:HorizontalLayout>
-                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
-                        <Label text="Title" design="Bold" class="sapUiSmallMarginEnd"/>
-                        <Text text="{Title}"/>
-                    </layout:HorizontalLayout>
-                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
-                        <Label text="Role" design="Bold" class="sapUiSmallMarginEnd"/>
-                        <Text text="{Role}"/>
-                    </layout:HorizontalLayout>
+                    class="sapUiSmallMargin"/>
+                <layout:VerticalLayout class="sapUiMediumMargin">
+                        <Label text="Department" design="Bold" class="sapUiSmallMarginBottom"/>
+                        <Label text="Title" design="Bold" class="sapUiSmallMarginBottom"/>
+                        <Label text="Role" design="Bold" class="sapUiSmallMarginBottom"/>
                 </layout:VerticalLayout>
-                <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
-                        <Label text="Direct Report" design="Bold" class="sapUiSmallMarginEnd"/>
-                        <Text text="{DirectReport}"/>
-                    </layout:HorizontalLayout>
-                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
-                        <Label text="Start Date" design="Bold" class="sapUiSmallMarginEnd"/>
-                        <Text text="{StartDate}"/>
-                    </layout:HorizontalLayout>
-                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
-                        <Label text="Email" design="Bold" class="sapUiSmallMarginEnd"/>
-                        <Text text="{Email}"/>
-                    </layout:HorizontalLayout>
+                <layout:VerticalLayout class="sapUiMediumMargin">
+                        <Text text="{Department}" class="sapUiSmallMarginBottom"/>
+                        <Text text="{Title}" class="sapUiSmallMarginBottom"/>
+                        <Text text="{Role}" class="sapUiSmallMarginBottom"/>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiMediumMargin">
+                        <Label text="Direct Report" design="Bold" class="sapUiSmallMarginBottom"/>
+                        <Label text="Start Date" design="Bold" class="sapUiSmallMarginBottom"/>
+                        <Label text="Email" design="Bold" class="sapUiSmallMarginBottom"/>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiMediumMargin">
+                        <Text text="{DirectReport}" class="sapUiSmallMarginBottom"/>
+                        <Text text="{StartDate}" class="sapUiSmallMarginBottom"/>
+                        <Text text="{Email}" class="sapUiSmallMarginBottom"/>
                 </layout:VerticalLayout>
             </layout:HorizontalLayout>
             <layout:HorizontalLayout id="inputs" visible="false">

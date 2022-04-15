@@ -28,7 +28,8 @@
                         groupTitle="Group1" 
                         name="Name" 
                         label="Name" 
-                        labelTooltip="Search by name">
+                        labelTooltip="Search by name"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -38,7 +39,8 @@
                         groupTitle="Group1" 
                         name="Department" 
                         label="Department" 
-                        labelTooltip="Search by department">
+                        labelTooltip="Search by department"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -48,7 +50,8 @@
                         groupTitle="Group1" 
                         name="Title" 
                         label="Title" 
-                        labelTooltip="Search by title">
+                        labelTooltip="Search by title"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -58,7 +61,8 @@
                         groupTitle="Group1" 
                         name="Role" 
                         label="Role" 
-                        labelTooltip="Search by role">
+                        labelTooltip="Search by role"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -68,7 +72,8 @@
                         groupTitle="Group1" 
                         name="Direct Report" 
                         label="Direct Report" 
-                        labelTooltip="Search by direct report">
+                        labelTooltip="Search by direct report"
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input type="Text"/>
                         </fb:control>
@@ -110,16 +115,6 @@
                             id="exportEmployeeListButton"
                             icon="sap-icon://excel-attachment"
                             press="onExport"/>
-                        <SearchField
-                            id="searchField"
-                            tooltip="{i18n>worklistSearchTooltip}"
-                            liveChange=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData
-                                    maxWidth="200px"
-                                    priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
                     </OverflowToolbar>
                 </headerToolbar>
 
