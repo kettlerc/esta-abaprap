@@ -50,7 +50,7 @@
                         <Button
                             id="exportEmployeeListButton"
                             icon="sap-icon://excel-attachment"
-                            press="onExportSpreadsheet"/>
+                            press="onExport"/>
                         <SearchField
                             id="searchField"
                             tooltip="{i18n>worklistSearchTooltip}"
@@ -118,6 +118,10 @@
                 </items>
             </Table>
         </semantic:content>
+        
+        <semantic:titleMainAction>
+			<semantic:TitleMainAction text="Manage Employees" press="onEmployeeList"/>
+		</semantic:titleMainAction>
 
         <semantic:addAction>
 			<semantic:AddAction press="onAddSkill"/>

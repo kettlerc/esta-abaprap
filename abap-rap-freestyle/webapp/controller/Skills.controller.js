@@ -4,9 +4,13 @@ sap.ui.define([
     "../model/formatter",
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, formatter, MessageToast, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    "sap/ui/export/library",
+    "sap/ui/export/Spreadsheet"
+], function (BaseController, JSONModel, formatter, MessageToast, Filter, FilterOperator, exportLibrary, Spreadsheet) {
     "use strict";
+
+    var EdmType = exportLibrary.EdmType;
 
     return BaseController.extend("freestylerap.abaprapfreestyle.controller.Skills", {
 
@@ -112,8 +116,55 @@ sap.ui.define([
 			}
         },
 
-        onExportSpreadsheet : function () {
-            console.log("exporting");
-        }
+        onEmployeeList : function () {
+            this.getRouter().navTo("worklist");
+        },
+
+        createColumnConfig: function() {
+			var aCols = [];
+
+			aCols.push({
+				property: 'Skill',
+				type: EdmType.String
+			});
+
+			aCols.push({
+				property: 'Type',
+				type: EdmType.String
+			});
+
+            aCols.push({
+				property: 'Institution',
+				type: EdmType.String
+			});
+
+			return aCols;
+		},
+
+        onExport: function() {
+			var aCols, oRowBinding, oSettings, oSheet, oTable;
+
+			if (!this._oTable) {
+				this._oTable = this.byId('skillsTable');
+			}
+
+			oTable = this._oTable;
+			oRowBinding = oTable.getBinding('items');
+			aCols = this.createColumnConfig();
+
+			oSettings = {
+				workbook: {
+					columns: aCols,
+					hierarchyLevel: 'Level'
+				},
+				dataSource: oRowBinding,
+				fileName: 'Skill List.xlsx'
+			};
+
+			oSheet = new Spreadsheet(oSettings);
+			oSheet.build().finally(function() {
+				oSheet.destroy();
+			});
+		}
     });
 });

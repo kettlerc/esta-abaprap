@@ -9,8 +9,8 @@
 
     <semantic:SemanticPage
         id="page"
-        headerPinnable="false"
-        toggleHeaderOnTitleClick="false"
+        headerPinnable="true"
+        toggleHeaderOnTitleClick="true"
         busy="{objectView>/busy}"
         busyIndicatorDelay="{objectView>/delay}"
         floatingFooter="true"
@@ -37,20 +37,32 @@
                     displaySize="XL"
                     class="sapUiMediumMarginEnd"/>
                 <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                    <Label text="Department" design="Bold"/>
-                    <Text text="{Department}"/>
-                    <Label text="Title" design="Bold"/>
-                    <Text text="{Title}"/>
-                    <Label text="Role" design="Bold"/>
-                    <Text text="{Role}"/>
+                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
+                        <Label text="Department" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{Department}"/>
+                    </layout:HorizontalLayout>
+                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
+                        <Label text="Title" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{Title}"/>
+                    </layout:HorizontalLayout>
+                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
+                        <Label text="Role" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{Role}"/>
+                    </layout:HorizontalLayout>
                 </layout:VerticalLayout>
                 <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                    <Label text="Direct Report" design="Bold"/>
-                    <Text text="{DirectReport}"/>
-                    <Label text="Start Date" design="Bold"/>
-                    <Text text="{StartDate}"/>
-                    <Label text="Email" design="Bold"/>
-                    <Text text="{Email}"/>
+                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
+                        <Label text="Direct Report" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{DirectReport}"/>
+                    </layout:HorizontalLayout>
+                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
+                        <Label text="Start Date" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{StartDate}"/>
+                    </layout:HorizontalLayout>
+                    <layout:HorizontalLayout class="sapUiSmallMarginBottom">
+                        <Label text="Email" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{Email}"/>
+                    </layout:HorizontalLayout>
                 </layout:VerticalLayout>
             </layout:HorizontalLayout>
             <layout:HorizontalLayout id="inputs" visible="false">
@@ -117,16 +129,6 @@
                             icon="sap-icon://delete"
                             type="Transparent"
                             press="onDeleteSkill"/>
-                        <SearchField
-                            id="searchField"
-                            tooltip="{i18n>worklistSearchTooltip}"
-                            search=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData
-                                    maxWidth="200px"
-                                    priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
                     </OverflowToolbar>
                 </headerToolbar>
 

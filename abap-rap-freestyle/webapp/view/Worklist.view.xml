@@ -3,23 +3,79 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:semantic="sap.f.semantic"
-    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:smartTable="sap.ui.comp.smarttable">
+    xmlns:fb="sap.ui.comp.filterbar">
 
     <semantic:SemanticPage
         id="page"
         headerPinnable="true"
-        autoPopinMode="true"
-        floatingFooter="true"
-        contextualWidth="Auto"
-        growing="true"
-        toggleHeaderOnTitleClick="false">
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false">
 
         <semantic:titleHeading>
             <Title
                 text="{i18n>worklistTitle}"
                 level="H2"/>
         </semantic:titleHeading>
+
+        <semantic:headerContent>
+            <fb:FilterBar 
+                id="filterbar" 
+                search="onSearch" 
+                useToolbar="true">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem 
+                        groupName="searchName" 
+                        groupTitle="Group1" 
+                        name="Name" 
+                        label="Name" 
+                        labelTooltip="Search by name">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem 
+                        groupName="searchDepartment" 
+                        groupTitle="Group1" 
+                        name="Department" 
+                        label="Department" 
+                        labelTooltip="Search by department">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem 
+                        groupName="searchTitle" 
+                        groupTitle="Group1" 
+                        name="Title" 
+                        label="Title" 
+                        labelTooltip="Search by title">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem 
+                        groupName="searchRole" 
+                        groupTitle="Group1" 
+                        name="Role" 
+                        label="Role" 
+                        labelTooltip="Search by role">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem 
+                        groupName="searchDirectReport" 
+                        groupTitle="Group1" 
+                        name="Direct Report" 
+                        label="Direct Report" 
+                        labelTooltip="Search by direct report">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+        </semantic:headerContent>
 
         <semantic:content>
             <Table
@@ -53,7 +109,7 @@
                         <Button
                             id="exportEmployeeListButton"
                             icon="sap-icon://excel-attachment"
-                            press="onExportSpreadsheet"/>
+                            press="onExport"/>
                         <SearchField
                             id="searchField"
                             tooltip="{i18n>worklistSearchTooltip}"
@@ -108,11 +164,11 @@
         </semantic:content>
 
         <semantic:titleCustomTextActions>
-			<Button text="Master Skill List" press="onMasterSkillList"/>
+			<Button text="Add Employee" press="onAddEmployee"/>
 		</semantic:titleCustomTextActions>
         
         <semantic:titleMainAction>
-			<semantic:TitleMainAction text="Add Employee" press="onAddEmployee"/>
+			<semantic:TitleMainAction text="Manage Skills" press="onMasterSkillList"/>
 		</semantic:titleMainAction>
 
     </semantic:SemanticPage>

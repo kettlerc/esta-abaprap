@@ -4,9 +4,12 @@ sap.ui.define([
     "../model/formatter",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+    "sap/ui/export/library",
     "sap/ui/export/Spreadsheet"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Spreadsheet) {
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator, exportLibrary, Spreadsheet) {
     "use strict";
+
+    var EdmType = exportLibrary.EdmType;
 
     return BaseController.extend("freestylerap.abaprapfreestyle.controller.Worklist", {
 
@@ -44,7 +47,6 @@ sap.ui.define([
         onNavBack : function() {
             history.go(-1);
         },
-
 
         onSearch: function (oEvent) {
 			var aFilters = [];
@@ -94,9 +96,61 @@ sap.ui.define([
             this.getRouter().navTo("skills");
         },
 
-        onExportSpreadsheet : function () {
-            console.log("exporting");
-        }
+        createColumnConfig: function() {
+			var aCols = [];
 
+			aCols.push({
+				property: 'Fullname',
+				type: EdmType.String
+			});
+
+			aCols.push({
+				property: 'Department',
+				type: EdmType.String
+			});
+
+            aCols.push({
+				property: 'Title',
+				type: EdmType.String
+			});
+
+            aCols.push({
+				property: 'DirectReport',
+				type: EdmType.String
+			});
+
+			aCols.push({
+				property: 'StartDate',
+				type: EdmType.Date
+			});
+
+			return aCols;
+		},
+
+        onExport: function() {
+			var aCols, oRowBinding, oSettings, oSheet, oTable;
+
+			if (!this._oTable) {
+				this._oTable = this.byId('employeeTable');
+			}
+
+			oTable = this._oTable;
+			oRowBinding = oTable.getBinding('items');
+			aCols = this.createColumnConfig();
+
+			oSettings = {
+				workbook: {
+					columns: aCols,
+					hierarchyLevel: 'Level'
+				},
+				dataSource: oRowBinding,
+				fileName: 'Employee List.xlsx'
+			};
+
+			oSheet = new Spreadsheet(oSettings);
+			oSheet.build().finally(function() {
+				oSheet.destroy();
+			});
+		}
     });
 });
