@@ -122,6 +122,26 @@ sap.ui.define([
             this.getView().getModel().resetChanges("employeeInfo");
         },
 
+        onOpenDeleteDialog : function () {
+			this.byId("deleteDialog").open();
+		},
+
+        onDelete : function (oEvent) {
+            var oRouter = this.getRouter();
+            var employeeContext = this.getView("objectView").byId("page").getBindingContext();
+            
+            employeeContext.delete("$auto").then(function (oEvent) {
+                oRouter.navTo("worklist", {});
+                this.byId("deleteDialog").close();
+            })
+
+            MessageToast.show("Employee deleted!");
+        },
+
+        onCloseDeleteDialog : function () {
+			this.byId("deleteDialog").close();
+		},
+
         onDeleteSkill : function () {
             var oSelected = this.byId("skillTable").getSelectedItem();
 
@@ -164,7 +184,6 @@ sap.ui.define([
 
         onSelectChange : function (oEvent) {
             selectedSkill = oEvent.getParameter("selectedItem").getProperty("key");
-            console.log(selectedSkill);
         }
     });
 

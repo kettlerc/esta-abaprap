@@ -29,34 +29,17 @@ sap.ui.define([
             history.go(-1);
         },
 
-        onSearch : function (oEvent) {
-            if (oEvent.getParameters().refreshButtonPressed) {
-                // Search field's 'refresh' button has been pressed.
-                // This is visible if you select any main list item.
-                // In this case no new search is triggered, we only
-                // refresh the list binding.
-                this.onRefresh();
-            } else {
-                var aTableSearchState = [];
-                var sQuery = oEvent.getParameter("query");
-
-                if (sQuery && sQuery.length > 0) {
-                    aTableSearchState = [new Filter("Id", FilterOperator.Contains, sQuery)];
-                }
-                this._applySearch(aTableSearchState);
-            }
-
-        },
-
-        _applySearch: function(aTableSearchState) {
-            var oTable = this.byId("skillsTable"),
-                oViewModel = this.getModel("skillView");
-            oTable.getBinding("items").filter(aTableSearchState, "Application");
-            // changes the noDataText of the list in case there are no filter results
-            if (aTableSearchState.length !== 0) {
-                oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
-            }
-        },
+        onSearch: function (oEvent) {
+			var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+			if (sQuery && sQuery.length > 0) {
+				var filter = new Filter("Skill", FilterOperator.Contains, sQuery);
+				aFilters.push(filter);
+			}
+			var oTable = this.byId("skillsTable");
+			var oBinding = oTable.getBinding("items");
+			oBinding.filter(aFilters, "Application");
+		},
 
         showFooter : function (bShow) {
 			this.oSemanticPage.setShowFooter(bShow);
@@ -127,6 +110,10 @@ sap.ui.define([
 					MessageBox.error(oError.message);
 				});
 			}
+        },
+
+        onExportSpreadsheet : function () {
+            console.log("exporting");
         }
     });
 });

@@ -13,6 +13,7 @@
         toggleHeaderOnTitleClick="false"
         busy="{objectView>/busy}"
         busyIndicatorDelay="{objectView>/delay}"
+        floatingFooter="true"
         showNavButton="true"
 		navButtonPress="onNavBack">
 
@@ -32,6 +33,9 @@
 
         <semantic:headerContent>
             <layout:HorizontalLayout id="information" visible="true">
+                <Avatar 
+                    displaySize="XL"
+                    class="sapUiMediumMarginEnd"/>
                 <layout:VerticalLayout class="sapUiMediumMarginEnd">
                     <Label text="Department" design="Bold"/>
                     <Text text="{Department}"/>
@@ -100,7 +104,7 @@
                     <OverflowToolbar>
                         <Title
                             id="tableHeader"
-                            text="{worklistView>/worklistTableTitle}"
+                            text="Skills"
                             level="H3"/>
                         <ToolbarSpacer />
                         <Button
@@ -175,6 +179,10 @@
 			<semantic:TitleMainAction id="editAction" text="Edit" press="onEditEmployee"/>
 		</semantic:titleMainAction>
 
+        <semantic:deleteAction>
+			<semantic:DeleteAction id="deleteAction" press="onOpenDeleteDialog"/>
+		</semantic:deleteAction>
+
         <semantic:footerMainAction>
 			<semantic:FooterMainAction text="Save" press="onSave"/>
 		</semantic:footerMainAction>
@@ -185,6 +193,7 @@
 
         <semantic:dependents>
 			<core:Fragment fragmentName="freestylerap.abaprapfreestyle.view.AddSkillDialog" type="XML" />
+            <core:Fragment fragmentName="freestylerap.abaprapfreestyle.view.DeleteDialog" type="XML" />
 		</semantic:dependents>
 
     </semantic:SemanticPage>

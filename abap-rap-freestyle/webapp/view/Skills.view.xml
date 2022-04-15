@@ -47,10 +47,14 @@
                             id="refreshUsersButton"
                             icon="sap-icon://refresh"
                             press="onRefresh"/>
+                        <Button
+                            id="exportEmployeeListButton"
+                            icon="sap-icon://excel-attachment"
+                            press="onExportSpreadsheet"/>
                         <SearchField
                             id="searchField"
                             tooltip="{i18n>worklistSearchTooltip}"
-                            search=".onSearch">
+                            liveChange=".onSearch">
                             <layoutData>
                                 <OverflowToolbarLayoutData
                                     maxWidth="200px"
