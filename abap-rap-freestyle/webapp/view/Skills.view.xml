@@ -2,7 +2,8 @@
     controllerName="freestylerap.abaprapfreestyle.controller.Skills"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:semantic="sap.f.semantic">
+    xmlns:semantic="sap.f.semantic"
+    xmlns:fb="sap.ui.comp.filterbar">
 
     <semantic:SemanticPage
         id="skillsPage"
@@ -17,6 +18,46 @@
                 text="Master Skill List"
                 level="H2"/>
         </semantic:titleHeading>
+
+        <semantic:headerContent>
+            <fb:FilterBar 
+                id="filterbar" 
+                search="onSearch" 
+                useToolbar="true">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem 
+                        groupName="searchSkill" 
+                        groupTitle="Group1" 
+                        name="Skill" 
+                        label="Skill" 
+                        labelTooltip="Search by skill">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem 
+                        groupName="searchType" 
+                        groupTitle="Group1" 
+                        name="Type" 
+                        label="Type" 
+                        labelTooltip="Search by type">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem 
+                        groupName="searchInstitutiion" 
+                        groupTitle="Group1" 
+                        name="Institution" 
+                        label="Institution" 
+                        labelTooltip="Search by institution">
+                        <fb:control>
+                            <Input type="Text"/>
+                        </fb:control>
+				    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+        </semantic:headerContent>
 
         <semantic:content>
             <Table
