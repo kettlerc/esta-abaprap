@@ -50,10 +50,22 @@ sap.ui.define([
 
         onSearch: function (oEvent) {
 			var aFilter = [];
-			var sQuery = oEvent.getParameter("selectionSet")[0].getProperty("value");
-			if (sQuery) {
-				aFilter.push(new Filter("Fullname", FilterOperator.Contains, sQuery));
-			}
+			var sQueryName = oEvent.getParameter("selectionSet")[0].getProperty("value");
+            var sQueryDepartment = oEvent.getParameter("selectionSet")[1].getProperty("value");
+            var sQueryTitle = oEvent.getParameter("selectionSet")[2].getProperty("value");
+            var sQueryRole = oEvent.getParameter("selectionSet")[3].getProperty("value");
+            var sQueryDirectReport = oEvent.getParameter("selectionSet")[4].getProperty("value");
+			if (sQueryName) {
+				aFilter.push(new Filter("Fullname", FilterOperator.Contains, sQueryName));
+			} else if (sQueryDepartment) {
+                aFilter.push(new Filter("Department", FilterOperator.Contains, sQueryDepartment));
+            } else if (sQueryTitle) {
+                aFilter.push(new Filter("Title", FilterOperator.Contains, sQueryTitle));
+            } else if (sQueryRole) {
+                aFilter.push(new Filter("Role", FilterOperator.Contains, sQueryRole));
+            } else if (sQueryDirectReport) {
+                aFilter.push(new Filter("DirectReport", FilterOperator.Contains, sQueryDirectReport));
+            }
 
 			// filter binding
 			var oList = this.byId("employeeTable");

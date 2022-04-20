@@ -34,15 +34,22 @@ sap.ui.define([
         },
 
         onSearch: function (oEvent) {
-			var aFilters = [];
-			var sQuery = oEvent.getSource().getValue();
-			if (sQuery && sQuery.length > 0) {
-				var filter = new Filter("Skill", FilterOperator.Contains, sQuery);
-				aFilters.push(filter);
-			}
-			var oTable = this.byId("skillsTable");
-			var oBinding = oTable.getBinding("items");
-			oBinding.filter(aFilters, "Application");
+			var aFilter = [];
+			var sQuerySkill = oEvent.getParameter("selectionSet")[0].getProperty("value");
+            var sQueryType = oEvent.getParameter("selectionSet")[1].getProperty("value");
+            var sQueryInstitution = oEvent.getParameter("selectionSet")[2].getProperty("value");
+			if (sQuerySkill) {
+				aFilter.push(new Filter("Skill", FilterOperator.Contains, sQuerySkill));
+			} else if (sQueryType) {
+                aFilter.push(new Filter("Type", FilterOperator.Contains, sQueryType));
+            } else if (sQueryInstitution) {
+                aFilter.push(new Filter("Institution", FilterOperator.Contains, sQueryInstitution));
+            }
+
+			// filter binding
+			var oList = this.byId("skillsTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
 		},
 
         showFooter : function (bShow) {
