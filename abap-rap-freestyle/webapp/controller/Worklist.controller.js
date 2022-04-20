@@ -2,11 +2,12 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "../model/formatter",
+    "sap/ui/model/Sorter",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/export/library",
     "sap/ui/export/Spreadsheet"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator, exportLibrary, Spreadsheet) {
+], function (BaseController, JSONModel, formatter, Sorter, Filter, FilterOperator, exportLibrary, Spreadsheet) {
     "use strict";
 
     var EdmType = exportLibrary.EdmType;
@@ -48,23 +49,23 @@ sap.ui.define([
             history.go(-1);
         },
 
-        onSearch: function (oEvent) {
+        onSearch: function () {
 			var aFilter = [];
-			var sQueryName = oEvent.getParameter("selectionSet")[0].getProperty("value");
-            var sQueryDepartment = oEvent.getParameter("selectionSet")[1].getProperty("value");
-            var sQueryTitle = oEvent.getParameter("selectionSet")[2].getProperty("value");
-            var sQueryRole = oEvent.getParameter("selectionSet")[3].getProperty("value");
-            var sQueryDirectReport = oEvent.getParameter("selectionSet")[4].getProperty("value");
-			if (sQueryName) {
+            var sQueryName = this.getModel("worklistView").getData().Fullname;
+            var sQueryDep = this.getModel("worklistView").getData().Department;
+            var sQueryTitle = this.getModel("worklistView").getData().Title;
+            var sQueryRole = this.getModel("worklistView").getData().Role;
+            var sQueryDR = this.getModel("worklistView").getData().DirectReport;
+            if (sQueryName) {
 				aFilter.push(new Filter("Fullname", FilterOperator.Contains, sQueryName));
-			} else if (sQueryDepartment) {
-                aFilter.push(new Filter("Department", FilterOperator.Contains, sQueryDepartment));
+			} else if (sQueryDep) {
+                aFilter.push(new Filter("Department", FilterOperator.Contains, sQueryDep));
             } else if (sQueryTitle) {
                 aFilter.push(new Filter("Title", FilterOperator.Contains, sQueryTitle));
             } else if (sQueryRole) {
                 aFilter.push(new Filter("Role", FilterOperator.Contains, sQueryRole));
-            } else if (sQueryDirectReport) {
-                aFilter.push(new Filter("DirectReport", FilterOperator.Contains, sQueryDirectReport));
+            } else if (sQueryDR) {
+                aFilter.push(new Filter("DirectReport", FilterOperator.Contains, sQueryDR));
             }
 
 			// filter binding

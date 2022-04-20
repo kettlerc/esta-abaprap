@@ -31,7 +31,9 @@
                         labelTooltip="Search by name"
                         visibleInFilterBar="true">
                         <fb:control>
-                            <Input type="Text"/>
+                            <Input 
+                                type="Text" 
+                                value="{worklistView>/Fullname}"/>
                         </fb:control>
 				    </fb:FilterGroupItem>
                     <fb:FilterGroupItem 
@@ -42,7 +44,9 @@
                         labelTooltip="Search by department"
                         visibleInFilterBar="true">
                         <fb:control>
-                            <Input type="Text"/>
+                            <Input 
+                                type="Text"
+                                value="{worklistView>/Department}"/>
                         </fb:control>
 				    </fb:FilterGroupItem>
                     <fb:FilterGroupItem 
@@ -53,7 +57,9 @@
                         labelTooltip="Search by title"
                         visibleInFilterBar="true">
                         <fb:control>
-                            <Input type="Text"/>
+                            <Input 
+                                type="Text"
+                                value="{worklistView>/Title}"/>
                         </fb:control>
 				    </fb:FilterGroupItem>
                     <fb:FilterGroupItem 
@@ -64,7 +70,9 @@
                         labelTooltip="Search by role"
                         visibleInFilterBar="true">
                         <fb:control>
-                            <Input type="Text"/>
+                            <Input 
+                                type="Text"
+                                value="{worklistView>/Role}"/>
                         </fb:control>
 				    </fb:FilterGroupItem>
                     <fb:FilterGroupItem 
@@ -75,7 +83,9 @@
                         labelTooltip="Search by direct report"
                         visibleInFilterBar="true">
                         <fb:control>
-                            <Input type="Text"/>
+                            <Input 
+                                type="Text"
+                                value="{worklistView>/DirectReport}"/>
                         </fb:control>
 				    </fb:FilterGroupItem>
                 </fb:filterGroupItems>
@@ -88,6 +98,9 @@
                 width="auto"
                 items="{
                     path: '/Employees',
+                    parameters: {
+                        $count: true
+                    },
                     sorter: {
                         path: 'Id',
                         descending: false
