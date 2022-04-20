@@ -49,15 +49,16 @@ sap.ui.define([
         },
 
         onSearch: function (oEvent) {
-			var aFilters = [];
-			var sQuery = oEvent.getSource().getValue();
-			if (sQuery && sQuery.length > 0) {
-				var filter = new Filter("Fullname", FilterOperator.Contains, sQuery);
-				aFilters.push(filter);
+			var aFilter = [];
+			var sQuery = oEvent.getParameter("selectionSet")[0].getProperty("value");
+			if (sQuery) {
+				aFilter.push(new Filter("Fullname", FilterOperator.Contains, sQuery));
 			}
-			var oTable = this.byId("employeeTable");
-			var oBinding = oTable.getBinding("items");
-			oBinding.filter(aFilters, "Application");
+
+			// filter binding
+			var oList = this.byId("employeeTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
 		},
 
         onRefresh : function () {
